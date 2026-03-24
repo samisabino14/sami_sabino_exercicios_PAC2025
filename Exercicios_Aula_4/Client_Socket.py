@@ -5,7 +5,7 @@
 
 import socket     # biblioteca para comunicação em rede
 import time       # biblioteca para controlo de tempo (opcional)
-from SendMessage import sendMessage
+from ChatMessage import chatMessage
 
 
 # -------------------------------
@@ -42,11 +42,10 @@ while isChat:
     # -------------------------------
     # encode() converte string para bytes
     mensagem = input("Nova mensagem: ")
-    clientSocket.send(mensagem.encode())
-    #sendMessage(mensagem, 'Cliente', time, clientSocket)
+    #clientSocket.send(mensagem.encode())
+    isChat = chatMessage(mensagem, 'Cliente', time, clientSocket, isChat)
 
-    if "Fechar" in mensagem:
-        isChat = False
+    if not isChat:
         break
     
     # -------------------------------
@@ -55,16 +54,12 @@ while isChat:
     # recv(1024) -> recebe até 1024 bytes
     # decode() -> converte bytes para string
     resposta = clientSocket.recv(1024).decode()
-    print("\nResposta do servidor:", resposta)
     
-    if "Fechar" in resposta:
+    if "fechar" in resposta.lower():
         isChat = False
         break
 
-# -------------------------------
-# 6. ESPERA (opcional)
-# -------------------------------
-time.sleep(2)
+    print("\nResposta do servidor:", resposta)
 
 # -------------------------------
 # 7. FECHAR A CONEXÃO

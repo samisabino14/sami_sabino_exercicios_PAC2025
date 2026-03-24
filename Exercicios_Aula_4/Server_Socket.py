@@ -6,7 +6,7 @@
 import socket     # biblioteca para comunicação em rede
 import time       # biblioteca para controlo de tempo
 import re as regex
-from SendMessage import sendMessage
+from ChatMessage import chatMessage
 
 # -------------------------------
 # 1. CRIAR SOCKET DO SERVIDOR
@@ -67,26 +67,35 @@ while isChat:
     mensagem = clientSocket.recv(1024).decode()
     print("Mensagem do cliente:", mensagem)
     
-    if "Fechar" in mensagem:
+    """ 
+    padrao_nome=r"nome"
+    padrao_email=r"^[\w\.]+@[\w\.]+\.\w+$"
+    pegar_email = regex.search('samisabino@gmail.com', mensagem)
+    pegar_nome = regex.findall(padrao_nome, mensagem)
+    #resultado = pegar_email.span()
+    
+    print(f"Possível email: {pegar_email}")
+    print(f"Possível nome: {pegar_nome}")
+    print()
+    
+    """
+    
+    if "fechar" in mensagem.lower():
         isChat = False
         break
+    
     
     # -------------------------------
     # 7. ENVIAR RESPOSTA AO CLIENTE
     # -------------------------------
     # encode() -> converte string para bytes
     resposta = input("\nNova mensagem: ")
-    clientSocket.send(resposta.encode())
+    isChat = chatMessage(resposta, 'Cliente', time, clientSocket, isChat)
     
-    if "Fechar" in resposta:
-        isChat = False
+    if not isChat:
         break
-    
-# -------------------------------
-# 8. ESPERA (SIMULA PROCESSAMENTO)
-# -------------------------------
-time.sleep(2)
 
+time.sleep(2)
 
 # -------------------------------
 # 9. FECHAR CONEXÕES
