@@ -1,16 +1,55 @@
-def chatMessage(msg, status, time, clientSocket, isChat):
+import re as rg
+
+def detectar_informacoes(msg):
     
-    #print(f"\nResposta do {emissor}: {msg}. \n")
-    clientSocket.send(msg.encode())
+    padroes = {
+        "email": r"[\w\.-]+@[\w\.-]+\.\w+",
+        "telefone": r"\b\d{9}\b",
+        "nome_proprio": r"\b[A-ZÁÉÍÓÚÂÊÔÃÕ][a-záéíóúâêôãõç]+\b",
+        "data": r"\b\d{1,2}/\d{1,2}/\d{4}\b",
+        "iban": r"PT\d{2}[ \d]{21,}",
+        "nif": r"\b\d{9}\b",
+        "senha": r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&_\\-])[A-Za-z\d@$!%*?&_\\-]{8,}$"
+    }
+    
+    encontrados = {}
+    
+    for tipo, padrao in padroes.items():
+        achados = rg.findall(padrao, msg)
+        if achados:
+            encontrados[tipo] = achados
+        
+    return encontrados
 
 
-    if "fechar" in msg.lower():
-        isChat = False
+def enviarMensagem(clientSocket, isChat):
+            
+    try:
+        msg = input("Nova mensagem: ")    
+        clientSocket.send(msg.encode())
+            
+        if "fechar" in msg.lower():
+            isChat = False
+        
+        return isChat
     
-    # -------------------------------
-    # 8. ESPERA (SIMULA PROCESSAMENTO)
-    # -------------------------------
-    time.sleep(2)
+    except Exception as e:
+        print(f"Erro: ",e)
+        
+
+def receberMensagem(clientSocket):
+    #print(f"{role.title()}:")
+    try:
+        resposta = clientSocket.recv(1024).decode()
+            
+        print("Mensagem recebida:", resposta)
+        
+        if "fechar" in resposta.lower():
+            isChat = False
+            return isChat
+        
+        return resposta
     
-    return isChat
-    
+    except Exception as e:
+        print(f"Erro: ",e)
+        

@@ -6,7 +6,7 @@
 import socket     # biblioteca para comunicação em rede
 import time       # biblioteca para controlo de tempo
 import re as regex
-from ChatMessage import chatMessage
+from ChatMessage import receberMensagem, enviarMensagem, detectar_informacoes
 
 # -------------------------------
 # 1. CRIAR SOCKET DO SERVIDOR
@@ -57,6 +57,8 @@ print(f"Conexão estabelecida com {enderecoCliente}")
 
 isChat = True
 
+informacao_detectada = []
+
 while isChat:
     
         # -------------------------------
@@ -64,38 +66,22 @@ while isChat:
     # -------------------------------
     # recv(1024) -> recebe até 1024 bytes
     # decode() -> converte bytes para string
-    mensagem = clientSocket.recv(1024).decode()
-    print("Mensagem do cliente:", mensagem)
+    mensagem = receberMensagem(clientSocket)
     
-    """ 
-    padrao_nome=r"nome"
-    padrao_email=r"^[\w\.]+@[\w\.]+\.\w+$"
-    pegar_email = regex.search('samisabino@gmail.com', mensagem)
-    pegar_nome = regex.findall(padrao_nome, mensagem)
-    #resultado = pegar_email.span()
+    padroes_encontrados = detectar_informacoes(mensagem)
     
-    print(f"Possível email: {pegar_email}")
-    print(f"Possível nome: {pegar_nome}")
-    print()
-    
-    """
-    
-    if "fechar" in mensagem.lower():
-        isChat = False
+    print(padroes_encontrados)
+            
+    if not mensagem:
         break
-    
-    
     # -------------------------------
     # 7. ENVIAR RESPOSTA AO CLIENTE
     # -------------------------------
     # encode() -> converte string para bytes
-    resposta = input("\nNova mensagem: ")
-    isChat = chatMessage(resposta, 'Cliente', time, clientSocket, isChat)
+    isChat = enviarMensagem(clientSocket, isChat)
     
     if not isChat:
         break
-
-time.sleep(2)
 
 # -------------------------------
 # 9. FECHAR CONEXÕES
