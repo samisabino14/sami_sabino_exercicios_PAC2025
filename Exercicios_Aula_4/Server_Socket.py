@@ -6,7 +6,7 @@
 import socket     # biblioteca para comunicação em rede
 import time       # biblioteca para controlo de tempo
 import re as regex
-from ChatMessage import receberMensagem, enviarMensagem, detectar_informacoes
+from ChatMessage import receberMensagem, enviarMensagem, detectar_informacoes, guardar_informacoes
 
 # -------------------------------
 # 1. CRIAR SOCKET DO SERVIDOR
@@ -70,7 +70,7 @@ while isChat:
     
     padroes_encontrados = detectar_informacoes(mensagem)
     
-    print(padroes_encontrados)
+    guardar_informacoes(padroes_encontrados, mensagem)
             
     if not mensagem:
         break

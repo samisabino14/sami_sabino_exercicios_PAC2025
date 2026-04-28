@@ -1,0 +1,15 @@
+
+GET https://b.6sc.co/v1/beacon/img.gif?token=b4f19dbc1b83183be9c498ba672b753c&svisitor=null&visitor=7877bae4-6db4-4da4-8ba9-b67eb1f4ab97&session=96773c58-3e60-4728-8492-d5f025e111c9&event=active_time_track&q=%7B%22currentTime%22%3A%22Wed%2C%2015%20Apr%202026%2015%3A36%3A36%20GMT%22%2C%22lastTrackTime%22%3A%22Wed%2C%2015%20Apr%202026%2015%3A36%3A31%20GMT%22%2C%22timeSpent%22%3A%224119%22%2C%22totalTimeSpent%22%3A%2215116%22%7D&isIframe=false&m=%7B%22description%22%3A%22Descubra%20software%20e%20tecnologia%20l%C3%ADderes%20de%20mercado%20da%20SAP.%20Torne-se%20uma%20empresa%20inteligente%20e%20sustent%C3%A1vel%20com%20as%20melhores%20solu%C3%A7%C3%B5es%20Cloud%2C%20de%20plataforma%20e%20sustentabilidade%20%E2%80%93%20seja%20qual%20for%20o%20tamanho%20ou%20o%20setor%20de%20atividade%20da%20sua%20empresa.%22%2C%22keywords%22%3A%22software%20de%20gest%C3%A3o%2C%20software%20empresarial%22%2C%22title%22%3A%22Software%20de%20gest%C3%A3o%20%7C%20Software%20empresarial%20%7C%20SAP%22%7D&cb=&r=https%3A%2F%2Fwww.sap.com%2Findex.html&thirdParty=%7B%7D&v2=1&pageURL=https%3A%2F%2Fwww.sap.com%2Fportugal%2Findex.html%3Fgeotargeting_redirect%3Dtrue&pageViewId=0f094ae9-bfcf-4c1b-8622-73ca8e4cd4e2&webTagId=1c927429-60f1-4915-b07f-09e3ef298385&v=1.1.31
+
+
+### 
+GET https://www.sap.com/portugal/index.html?geotargeting_redirect=true
+
+###
+GET https://www.w3schools.com/
+
+###
+POST https://region1.google-analytics.com/g/collect?v=2&tid=G-9YNMTB56NB&gtm=45je64h1v9104228927za20gzb846712008zd846712008&_p=1776871060890&gcd=13l3lPl2l1l1&npa=1&dma_cps=a&dma=1&_eu=AEAAAAQ&ae=a&are=1&cid=510337620.1772123693&frm=0&pscdl=noapi&rcb=9&sr=1280x720&uaa=x86&uab=64&uafvl=Microsoft%2520Edge%3B147.0.3912.60%7CNot.A%252FBrand%3B8.0.0.0%7CChromium%3B147.0.7727.56&uam=&uamb=0&uap=Windows&uapv=19.0.0&uaw=0&ul=pt-pt&_s=3&tag_exp=0~115616985~115938465~115938468~117266400~117512543~117884344&dl=https%3A%2F%2Fpathfinder.w3schools.com%2Fprofile&dr=https%3A%2F%2Fpathfinder.w3schools.com%2F&sid=1776867883&sct=14&seg=1&dt=W3Schools%20Pathfinder&en=page_view&ep.content_group=W3Schools%20Home&_et=4598&tfd=49118
+
+###
+POST https://pathfinder.w3schools.com/_next/static/chunks/webpack-737a62c8851aed7d.js

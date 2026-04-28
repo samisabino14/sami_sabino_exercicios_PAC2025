@@ -1,0 +1,4 @@
+{"timestamp": "2026-04-08T13:58:06.391549", "mensagem_original": "Oi", "dados_detectados": {"nome_proprio": ["Oi"]}}
+{"timestamp": "2026-04-08T13:58:43.479020", "mensagem_original": "samisabino@gmail.com é o meu email.", "dados_detectados": {"email": ["samisabino@gmail.com"]}}
+{"timestamp": "2026-04-08T13:59:28.752982", "mensagem_original": "Heldanhasa_17", "dados_detectados": {"senha": ["Heldanhasa_17"]}}
+{"timestamp": "2026-04-08T13:59:55.321162", "mensagem_original": "E agora?", "dados_detectados": {}}
