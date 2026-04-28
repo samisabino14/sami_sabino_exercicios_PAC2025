@@ -11,15 +11,12 @@ rules = [
 
 visited = set()
 
-
 def main():
     try:
         pages_to_visit = read_file("sites.json", "json")
 
         make_to_visit(pages_to_visit)
-        
-        print(visited)
-            
+                    
     except Exception as e:
         print(e)
         
@@ -127,6 +124,7 @@ def get_base_url(url):
     return match[1] if match else None
 
 def make_to_visit(pages_to_visit):
+    results = []
     
     for page in pages_to_visit:
         
@@ -141,20 +139,18 @@ def make_to_visit(pages_to_visit):
             is_restrict = is_blocked(page["link"], disallow_list)
             
             if is_restrict is True: # "Explorar este link..."
-                print(f"\n{'*' * 80}\n\nA página {page["link"]} não pode ser explorada. \n\t* Está protegida por robots.txt!\n\n{'*' * 80}\n")
+                print(f"\n{'*' * 80}\n\nA página {page['link']} não pode ser explorada. \n\t* Está protegida por robots.txt!\n\n{'*' * 80}\n")
                 continue
             else:
                 crawler_response = crawler(page["link"])
                 links, title = extract_tile_and_links(crawler_response)
                 
-                reuslt = {
+                results.append({
                     "url": page["link"],
                     "titulo": title,
                     "links": links
-                }
-
-                print(reuslt)
-
+                })
+                
                 """ 
                 for link in links:
                     complete_link = baseUrl + link if link.startswith("/") else link
@@ -165,6 +161,7 @@ def make_to_visit(pages_to_visit):
             
         delay_1s() # Cria um delay de 1s para cada página visitada
         
+    save_to_json(results, "crawler_output.json")
 
 def crawler(url):
     
@@ -191,7 +188,18 @@ def extract_tile_and_links(html_page):
     links = standard.findall(html_page)
     title = get_site_title(html_page)
     
-    return links, title[1]
+    return links, title[1] if links or title[1] else links and "Sem título"
+
+""" _____________________________________________________________________________
+
+    FICHEIROS
+    _____________________________________________________________________________ 
+"""
+
+def save_to_json(data, filename="resultado.json"):
+    print(data)
+    with open(filename, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
 
 def read_abs_path(filename):
     # Caminho absoluto da raíz do projeto
